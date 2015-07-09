@@ -60,4 +60,25 @@ public class CellGridTest {
         assertThat(grid.getCell(2, 3).isAlive()).isFalse();
         assertThat(grid.getCell(3, 3).isAlive()).isFalse();
     }
+
+    @Test
+    public void canKillSpecificCells() {
+        CellGrid grid = new CellGrid();
+
+        grid.birthCell(1, 1);
+        grid.birthCell(2, 2);
+        grid.birthCell(3, 2);
+
+        grid.killCell(2, 2);
+
+        assertThat(grid.getCell(1, 1).isAlive()).isTrue();
+        assertThat(grid.getCell(2, 1).isAlive()).isFalse();
+        assertThat(grid.getCell(3, 1).isAlive()).isFalse();
+        assertThat(grid.getCell(1, 2).isAlive()).isFalse();
+        assertThat(grid.getCell(2, 2).isAlive()).isFalse();
+        assertThat(grid.getCell(3, 2).isAlive()).isTrue();
+        assertThat(grid.getCell(1, 3).isAlive()).isFalse();
+        assertThat(grid.getCell(2, 3).isAlive()).isFalse();
+        assertThat(grid.getCell(3, 3).isAlive()).isFalse();
+    }
 }

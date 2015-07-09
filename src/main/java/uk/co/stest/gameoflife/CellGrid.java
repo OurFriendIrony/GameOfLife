@@ -2,9 +2,6 @@ package uk.co.stest.gameoflife;
 
 public class CellGrid {
 
-    private final int width;
-    private final int height;
-
     private Cell[][] cells;
 
     public CellGrid() {
@@ -12,8 +9,6 @@ public class CellGrid {
     }
 
     public CellGrid(int height, int width) {
-        this.height = height;
-        this.width = width;
 
         cells = new Cell[height][width];
         for (int i = 0; i < height; i++)
@@ -35,5 +30,9 @@ public class CellGrid {
 
     public void birthCell(int x, int y) {
         cells[x - 1][y - 1].live();
+    }
+
+    public void killCell(int x, int y) {
+        cells[x - 1][y - 1].die();
     }
 }
