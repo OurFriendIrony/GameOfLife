@@ -38,4 +38,42 @@ public class CellGrid {
     public void killCell(int x, int y) {
         cells[x - 1][y - 1].die();
     }
+
+    public int neighbours(int col, int row) {
+        int ct = 0;
+
+        int toRow = row + 1;
+        int fromRow = row - 1;
+        int fromCol = col - 1;
+        int toCol = col + 1;
+
+        for (int r = fromRow; r <= toRow; r++) {
+            for (int c = fromCol; c <= toCol; c++) {
+                if (notMe(col, row, c, r) && neighbourIsAlive(c, r))
+                    ct++;
+            }
+        }
+        return ct;
+    }
+
+    private boolean notMe(int col, int row, int c, int r) {
+        if (col != c || row != r)
+            return true;
+        return false;
+    }
+
+    private boolean neighbourIsAlive(int c, int r) {
+        if (withinBoundaries(c, r) && getCell(c, r).isAlive())
+            return true;
+        return false;
+    }
+
+    private boolean withinBoundaries(int x, int y) {
+        try {
+            getCell(x, y);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return false;
+        }
+        return true;
+    }
 }
