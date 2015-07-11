@@ -16,8 +16,20 @@ public class GameTest {
 
         game.process(1, 1);
 
-        assertThat(grid.cellIsAlive(1, 1));
+        assertThat(grid.cellIsAlive(1, 1)).isFalse();
         assertThat(grid.cellBirthed).isFalse();
+        assertThat(grid.cellKilled).isFalse();
+    }
+
+    @Test
+    public void deadCellWithThreeNeighboursIsBirthed() {
+        grid = new SpyGrid(false, 3);
+        game = new Game(grid);
+
+        game.process(1, 1);
+
+        assertThat(grid.cellIsAlive(1, 1)).isTrue();
+        assertThat(grid.cellBirthed).isTrue();
         assertThat(grid.cellKilled).isFalse();
     }
 
@@ -31,10 +43,10 @@ public class GameTest {
         private final int neighbours;
         public boolean cellKilled = false;
         public boolean cellBirthed = false;
-        private boolean state;
+        private boolean alive;
 
-        SpyGrid(boolean state, int neighbours) {
-            this.state = state;
+        SpyGrid(boolean alive, int neighbours) {
+            this.alive = alive;
             this.neighbours = neighbours;
         }
 
@@ -50,18 +62,18 @@ public class GameTest {
 
         @Override
         public boolean cellIsAlive(int x, int y) {
-            return state;
+            return alive;
         }
 
         @Override
         public void birthCell(int x, int y) {
-            state = true;
+            alive = true;
             cellBirthed = true;
         }
 
         @Override
         public void killCell(int x, int y) {
-            state = false;
+            alive = false;
             cellKilled = true;
         }
 

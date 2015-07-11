@@ -9,7 +9,7 @@ public class Game {
     }
 
     public void process(int col, int row) {
-//        grid.neighbours(col,row);
-//        grid.killCell(col, row);
+        if (grid.neighbours(col, row) == 3)
+            grid.birthCell(col, row);
     }
 }
