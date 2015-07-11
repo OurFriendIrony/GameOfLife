@@ -1,6 +1,6 @@
 package uk.co.stest.gameoflife;
 
-public class CellGrid {
+public class CellGrid implements Grid {
 
     private Cell[][] cells;
 
