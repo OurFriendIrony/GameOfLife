@@ -4,10 +4,6 @@ public class CellGrid {
 
     private Cell[][] cells;
 
-    public CellGrid() {
-        this(3, 3);
-    }
-
     public CellGrid(int height, int width) {
         cells = new Cell[height][width];
         populateGrid(height, width);

@@ -11,13 +11,7 @@ public class CellGridTest {
 
     @Before
     public void setup() {
-        defaultGrid = new CellGrid();
-    }
-
-    @Test
-    public void cellGridsAreDefaultThreeByThree() {
-        assertThat(defaultGrid.getHeight()).isEqualTo(3);
-        assertThat(defaultGrid.getWidth()).isEqualTo(3);
+        defaultGrid = new CellGrid(3,3);
     }
 
     @Test
