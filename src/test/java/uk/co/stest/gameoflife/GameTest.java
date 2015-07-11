@@ -57,7 +57,6 @@ public class GameTest {
         assertThat(grid.cellKilled).isFalse();
     }
 
-
     @Test
     public void livingCellWithThreeNeighboursStaysAlive() {
         grid = new SpyGrid(true, 3);
@@ -68,6 +67,18 @@ public class GameTest {
         assertThat(grid.cellIsAlive(1, 1)).isTrue();
         assertThat(grid.cellBirthed).isFalse();
         assertThat(grid.cellKilled).isFalse();
+    }
+
+    @Test
+    public void livingCellWithFourNeighboursIsKilled() {
+        grid = new SpyGrid(true, 4);
+        game = new Game(grid);
+
+        game.process(1, 1);
+
+        assertThat(grid.cellIsAlive(1, 1)).isFalse();
+        assertThat(grid.cellBirthed).isFalse();
+        assertThat(grid.cellKilled).isTrue();
     }
 
     //    Any live cell with fewer than two live neighbours dies, as if caused by under-population.
