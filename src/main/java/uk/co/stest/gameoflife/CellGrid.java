@@ -23,8 +23,8 @@ public class CellGrid implements Grid {
         return cells[0].length;
     }
 
-    public Cell getCell(int x, int y) {
-        return cells[x - 1][y - 1];
+    public boolean cellIsAlive(int x, int y){
+        return cells[x - 1][y - 1].isAlive();
     }
 
     public void birthCell(int x, int y) {
@@ -59,14 +59,14 @@ public class CellGrid implements Grid {
     }
 
     private boolean neighbourIsAlive(int c, int r) {
-        if (withinBoundaries(c, r) && getCell(c, r).isAlive())
+        if (withinBoundaries(c, r) && cellIsAlive(c, r))
             return true;
         return false;
     }
 
     private boolean withinBoundaries(int x, int y) {
         try {
-            getCell(x, y);
+            cellIsAlive(x, y);
         } catch (ArrayIndexOutOfBoundsException e) {
             return false;
         }

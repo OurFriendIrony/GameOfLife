@@ -40,8 +40,8 @@ public class GameTest {
         }
 
         @Override
-        public Cell getCell(int x, int y) {
-            return null;
+        public boolean cellIsAlive(int x, int y) {
+            return false;
         }
 
         @Override

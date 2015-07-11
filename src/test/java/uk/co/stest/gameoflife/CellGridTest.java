@@ -11,7 +11,7 @@ public class CellGridTest {
 
     @Before
     public void setup() {
-        defaultGrid = new CellGrid(3,3);
+        defaultGrid = new CellGrid(3, 3);
     }
 
     @Test
@@ -23,38 +23,31 @@ public class CellGridTest {
     }
 
     @Test
-    public void gridsHaveCells() {
-        CellGrid grid = new CellGrid(1, 1);
-
-        assertThat(grid.getCell(1, 1)).isInstanceOf(Cell.class);
-    }
-
-    @Test
     public void gridsAreCreatedBarren() {
-        assertThat(defaultGrid.getCell(1, 1).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(2, 1).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(3, 1).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(1, 2).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(2, 2).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(3, 2).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(1, 3).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(2, 3).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(3, 3).isAlive()).isFalse();
+        assertThat(defaultGrid.cellIsAlive(1, 1)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(2, 1)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(3, 1)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(1, 2)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(2, 2)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(3, 2)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(1, 3)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(2, 3)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(3, 3)).isFalse();
     }
 
     @Test
     public void canBirthSpecificCells() {
         defaultGrid.birthCell(2, 2);
 
-        assertThat(defaultGrid.getCell(1, 1).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(2, 1).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(3, 1).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(1, 2).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(2, 2).isAlive()).isTrue();
-        assertThat(defaultGrid.getCell(3, 2).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(1, 3).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(2, 3).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(3, 3).isAlive()).isFalse();
+        assertThat(defaultGrid.cellIsAlive(1, 1)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(2, 1)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(3, 1)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(1, 2)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(2, 2)).isTrue();
+        assertThat(defaultGrid.cellIsAlive(3, 2)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(1, 3)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(2, 3)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(3, 3)).isFalse();
     }
 
     @Test
@@ -65,9 +58,9 @@ public class CellGridTest {
 
         defaultGrid.killCell(2, 2);
 
-        assertThat(defaultGrid.getCell(1, 1).isAlive()).isTrue();
-        assertThat(defaultGrid.getCell(2, 2).isAlive()).isFalse();
-        assertThat(defaultGrid.getCell(3, 2).isAlive()).isTrue();
+        assertThat(defaultGrid.cellIsAlive(1, 1)).isTrue();
+        assertThat(defaultGrid.cellIsAlive(2, 2)).isFalse();
+        assertThat(defaultGrid.cellIsAlive(3, 2)).isTrue();
     }
 
     @Test
