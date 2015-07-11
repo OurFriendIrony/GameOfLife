@@ -10,7 +10,7 @@ public class GameTest {
     private Game game;
 
     @Test
-    public void deadCellWithNoNeighboursStaysDead() {
+    public void deadCellWithZeroNeighboursStaysDead() {
         grid = new SpyGrid(false, 0);
         game = new Game(grid);
 
@@ -31,6 +31,18 @@ public class GameTest {
         assertThat(grid.cellIsAlive(1, 1)).isTrue();
         assertThat(grid.cellBirthed).isTrue();
         assertThat(grid.cellKilled).isFalse();
+    }
+
+    @Test
+    public void livingCellWithZeroNeighboursIsKilled() {
+        grid = new SpyGrid(true, 0);
+        game = new Game(grid);
+
+        game.process(1, 1);
+
+        assertThat(grid.cellIsAlive(1, 1)).isFalse();
+        assertThat(grid.cellBirthed).isFalse();
+        assertThat(grid.cellKilled).isTrue();
     }
 
     //    Any live cell with fewer than two live neighbours dies, as if caused by under-population.
