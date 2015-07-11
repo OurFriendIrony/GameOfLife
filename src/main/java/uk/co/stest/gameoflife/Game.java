@@ -9,10 +9,18 @@ public class Game {
     }
 
     public void process(int col, int row) {
-        if (grid.cellIsAlive(col, row) && grid.neighbours(col, row) <= 2)
+        if (underPopulated(col, row))
             grid.killCell(col, row);
 
-        if (grid.neighbours(col, row) == 3)
+        if (repoductivelyIdeal(col, row))
             grid.birthCell(col, row);
+    }
+
+    private boolean repoductivelyIdeal(int col, int row) {
+        return !grid.cellIsAlive(col, row) && grid.neighbours(col, row) == 3;
+    }
+
+    private boolean underPopulated(int col, int row) {
+        return grid.cellIsAlive(col, row) && grid.neighbours(col, row) < 2;
     }
 }
