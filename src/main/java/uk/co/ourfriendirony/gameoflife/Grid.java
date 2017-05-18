@@ -1,4 +1,4 @@
-package uk.co.stest.gameoflife;
+package uk.co.ourfriendirony.gameoflife;
 
 public interface Grid {
 
